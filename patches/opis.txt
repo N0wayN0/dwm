@@ -1,0 +1,8 @@
+
+
+i dwmblocks-async dziala jest clickability i sygnaly od myszki
+
+dwmblocks async sciagnolem z 
+https://github.com/UtkarshVerma/dwmblocks-async.git
+dwm-statuscmd robi zeby udostepnic klikanie na dwmblocks
+https://dwm.suckless.org/patches/statuscmd/

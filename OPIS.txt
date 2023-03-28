@@ -1,0 +1,6 @@
+ zainstalowalem ten patch signal
+
+i dwmblocks-async dziala jest clickability i sygnaly od myszki
+
+dwmblocks async sciagnolem z 
+https://github.com/UtkarshVerma/dwmblocks-async.git

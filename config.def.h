@@ -5,11 +5,8 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=13", 
-	"Noto Color Emoji:pixelsize=12:antialias=true:autohint=true", 
-	"Ubuntu Nerd Font:size=19",
-	"NotoColorEmoji:pixelsize=12:antialias=true:autohint=true", 
-	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true" };
+static const char *fonts[]          = { "monospace:size=13:pixelsize=22" };
+//static const char *fonts[]          = { "monospace:size=18" };
 static const char dmenufont[]       = "monospace:size=13";
 static const char col_gray1[]       = "#888888";  /* background of bar */
 static const char col_gray2[]       = "#222222";  /* border of unfocused window */
@@ -66,20 +63,25 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *firefox[]  = { "firefox", NULL };
-static const char *killall[]  = { "/root/kill_all.sh", NULL };
-static const char *youtube[]  = { "/root/.local/bin/copy-selection", NULL };
+static const char *termcmd[] = { "st", NULL };
+static const char *firefox[] = { "firefox", NULL };
+static const char *killall[] = { "/root/kill_all.sh", NULL };
+static const char *youtube[] = { "/root/.local/bin/watch_YT_now", NULL };
+static const char *watch_later[] = { "/root/.local/bin/watch_YT_later", NULL };
+//static const char *set20[] = { "amixer set Master 20% && kill -RTMIN+21 $(pidof dwmblocks)", NULL };
+//static const char *set50[] = { "amixer set Master 50% && kill -RTMIN+21 $(pidof dwmblocks)", NULL };
+//static const char *set50[] = { "sudo pidof dwmblocks > /root/zzpidof", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox } },
-	{ MODKEY,                       XK_y,      spawn,          {.v = youtube } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = youtube } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = watch_later } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_r,      focusstack,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_r,      focusstack,     {.i = -1 } },
+	{ ALTKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
+	{ ALTKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
@@ -121,7 +123,7 @@ static const Button buttons[] = {
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
 	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
-	{ ClkStatusText,        ShiftMask,       Button1,        sigstatusbar,   {.i = 6} },
+	{ ClkStatusText,        ShiftMask,      Button1,        sigstatusbar,   {.i = 6} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

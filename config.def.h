@@ -29,6 +29,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ NULL,       "floating", NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            1,           -1 },
 };
 
@@ -64,6 +65,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[] = { "st", NULL };
+static const char *floatem[] = { "floatingterm.sh", NULL };
 static const char *firefox[] = { "firefox", NULL };
 static const char *killall[] = { "/root/kill_all.sh", NULL };
 static const char *youtube[] = { "/root/.local/bin/watch_YT_now", NULL };
@@ -79,6 +81,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = youtube } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = watch_later } },
+	{ ALTKEY,                       XK_Return, spawn,          {.v = floatem } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ ALTKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
 	{ ALTKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },

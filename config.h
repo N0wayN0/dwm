@@ -29,6 +29,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "float",    NULL,       NULL,       0,            1,           -1 },
 	{ NULL,       "floating", NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            1,           -1 },
 };
@@ -50,10 +51,10 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define ALTKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+	{ ALTKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+	{ ALTKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ ALTKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ ALTKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -66,7 +67,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[] = { "st", NULL };
 static const char *floathtop[] = { "floating.sh", "htop", NULL };
-static const char *floatvim[] = { "floating.sh", "notepad.sh", NULL };
+static const char *floatvim[] = { "notepad.sh", NULL };
 static const char *firefox[] = { "firefox", NULL };
 static const char *killall[] = { "/root/kill_all.sh", NULL };
 static const char *youtube[] = { "/root/.local/bin/watch_YT_now", NULL };
@@ -124,12 +125,13 @@ static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+	//{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+	{ ClkWinTitle,          0,              Button1,        focusstack,     {.i = +1 } },
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
 	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
-	{ ClkStatusText,        ShiftMask,      Button1,        sigstatusbar,   {.i = 6} },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkStatusText,        ShiftMask,      Button1,        sigstatusbar,   {.i = 6} },
+    { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },

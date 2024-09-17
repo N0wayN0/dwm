@@ -9,8 +9,10 @@ MANPREFIX = ${PREFIX}/share/man
 
 #X11INC = /usr/X11R6/include
 #X11LIB = /usr/X11R6/lib
-X11INC = $(HOME)/sources/color-emoji/libxft/include
-X11LIB = $(HOME)/sources/color-emoji/libxft/src/.libs
+#X11INC = $(HOME)/sources/color-emoji/libxft/include
+#X11LIB = $(HOME)/sources/color-emoji/libxft/src/.libs
+X11INC = /lib/i386-linux-gnu/colemo/include
+X11LIB = /lib/i386-linux-gnu/colemo/src/.libs
 
 # Xinerama, comment if you don't want it
 XINERAMALIBS  = -lXinerama

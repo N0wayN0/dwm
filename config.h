@@ -57,7 +57,7 @@ static const Layout layouts[] = {
 	{ ALTKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define CMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 #define STATUSBAR "dwmblocks"
 #include <X11/XF86keysym.h>
@@ -69,12 +69,9 @@ static const char *termcmd[] = { "st", NULL };
 static const char *floathtop[] = { "floating.sh", "htop", NULL };
 static const char *floatvim[] = { "notepad.sh", NULL };
 static const char *firefox[] = { "firefox", NULL };
-static const char *killall[] = { "/root/kill_all.sh", NULL };
+static const char *killall[] = { "kill_all.sh", NULL };
 static const char *youtube[] = { "/root/.local/bin/watch_YT_now", NULL };
-static const char *watch_later[] = { "/root/.local/bin/watch_YT_later", NULL };
 //static const char *set20[] = { "amixer set Master 20% && kill -RTMIN+21 $(pidof dwmblocks)", NULL };
-//static const char *set50[] = { "amixer set Master 50% && kill -RTMIN+21 $(pidof dwmblocks)", NULL };
-//static const char *set50[] = { "sudo pidof dwmblocks > /root/zzpidof", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -82,9 +79,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = youtube } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = watch_later } },
 	{ ALTKEY,                       XK_Return, spawn,          {.v = floatvim } },
 	{ ALTKEY,                       XK_r,      spawn,          {.v = floathtop } },
+	{ MODKEY,                       XK_equal,  spawn,          CMD("change_volume.sh up") },
+	{ MODKEY,                       XK_minus,  spawn,          CMD("change_volume.sh down") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ ALTKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
 	{ ALTKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },
@@ -110,13 +108,13 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
+    TAGKEYS(                        XK_5,                      4)
+    TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ ALTKEY|MODKEY,                XK_q,      spawn,          {.v = killall} }, 
 	{ ALTKEY|ShiftMask,             XK_q,      quit,           {0} },
+    { ALTKEY|MODKEY|ControlMask,    XK_End,    spawn,          {.v = killall} }, 
 };
 
 /* button definitions */

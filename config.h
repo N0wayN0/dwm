@@ -93,9 +93,12 @@ static const Key keys[] = {
 	/* LAYOUT MANAGEMENT */
 	{ MODKEY|ControlMask,   		XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
+    { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} }, /* tile */
+    { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[0]} }, /* float */
+    { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} }, /* mono */
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_s,      togglesticky,   {0} },
+	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 
@@ -134,9 +137,10 @@ static const Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	//{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+	{ ClkLtSymbol,          0,              Button4,        cyclelayout,    {.i = +1 } }, // mouse wheel up
+	{ ClkLtSymbol,          0,              Button5,        cyclelayout,    {.i = -1 } }, // mouse wheel down
+	{ ClkWinTitle,          0,              Button1,        zoom,           {0} },
+	{ ClkWinTitle,          0,              Button3,        killclient,     {0} },
 	{ ClkWinTitle,          0,              Button4,        focusstack,     {.i = +1 } },
 	{ ClkWinTitle,          0,              Button5,        focusstack,     {.i = -1 } },
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} }, // left mouse button

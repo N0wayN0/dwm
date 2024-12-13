@@ -68,6 +68,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[] = { "st", NULL };
 static const char *floathtop[] = { "floating.sh", "htop", NULL };
+static const char *qlaunch[] = { "floating.sh", "qlaunch.sh", NULL };
 static const char *floatvim[] = { "notepad.sh", NULL };
 static const char *firefox[] = { "firefox", NULL };
 static const char *killall[] = { "kill_all.sh", NULL };
@@ -128,6 +129,8 @@ static const Key keys[] = {
 	{ ALTKEY,                       XK_r,      spawn,          {.v = floathtop } },
 	{ MODKEY,                       XK_equal,  spawn,          CMD("change_volume.sh up") },
 	{ MODKEY,                       XK_minus,  spawn,          CMD("change_volume.sh down") },
+	{ MODKEY,                       XK_c,      spawn,          CMD("toggle_conky.sh") },
+	{ MODKEY,                       XK_Menu,   spawn,          {.v = qlaunch } },
 	{ ALTKEY|ShiftMask,             XK_q,      quit,           {0} },
     { ALTKEY|MODKEY|ControlMask,    XK_End,    spawn,          {.v = killall} }, 
 

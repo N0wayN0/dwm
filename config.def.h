@@ -69,6 +69,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[] = { "st", NULL };
 static const char *floathtop[] = { "floating.sh", "htop", NULL };
 static const char *qlaunch[] = { "floating.sh", "qlaunch.sh", NULL };
+static const char *show_manual[] = { "xdg-open", "/root/projects/Manual/index.html", NULL };
 static const char *floatvim[] = { "notepad.sh", NULL };
 static const char *firefox[] = { "firefox", NULL };
 static const char *killall[] = { "kill_all.sh", NULL };
@@ -130,7 +131,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_equal,  spawn,          CMD("change_volume.sh up") },
 	{ MODKEY,                       XK_minus,  spawn,          CMD("change_volume.sh down") },
 	{ MODKEY,                       XK_c,      spawn,          CMD("toggle_conky.sh") },
-	{ MODKEY,                       XK_Menu,   spawn,          {.v = qlaunch } },
+	{ MODKEY|ShiftMask,             XK_slash, spawn,          {.v = show_manual } },
+	{ ControlMask,                  XK_Menu,   spawn,          {.v = qlaunch } },
 	{ ALTKEY|ShiftMask,             XK_q,      quit,           {0} },
     { ALTKEY|MODKEY|ControlMask,    XK_End,    spawn,          {.v = killall} }, 
 
